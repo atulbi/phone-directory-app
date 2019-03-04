@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Preview from './Components/Preview';
 import Adder from './Components/Adder';
+import { Route, NavLink, Redirect } from 'react-router-dom';
 
 class App extends Component {
 
@@ -54,13 +55,13 @@ class App extends Component {
   }
 
   subAddHandler = () => {
-    let subName = this.state.ongoing.name , subPhone = this.state.ongoing.number; 
-    if ( subName !== "" && subPhone.length === 10) {
+    let subName = this.state.ongoing.name, subPhone = this.state.ongoing.number;
+    if (subName !== "" && subPhone.length === 10) {
       this.setState(prevState => {
         let prev = prevState;
         prev.subscriber.push(this.state.ongoing);
       });
-      this.setState({preview:true ,ongoing:{name:"" , number:""}});
+      this.setState({ preview: true, ongoing: { name: "", number: "" } });
     }
     else {
       alert("Invalid Input");
@@ -71,10 +72,10 @@ class App extends Component {
     let headText, button;
     if (this.state.preview) {
       headText = "PHONE DIRECTORY"
-      button = <button className='main-button lightgreen' onClick={this.changePreviewHandler}>ADD</button>
+      button = <NavLink to={'/add'} exact ><button className='main-button lightgreen' onClick={this.changePreviewHandler}>ADD</button></NavLink>
     } else {
       headText = "ADD SUBSCRIBER"
-      button = <button className='main-button white' onClick={this.changePreviewHandler}>BACK</button>
+      button = <NavLink to={'/'} exact ><button className='main-button white' onClick={this.changePreviewHandler}>BACK</button></NavLink>
     }
 
     return (
@@ -87,12 +88,19 @@ class App extends Component {
           <div>
             {button}
           </div>
-          {this.state.preview ? <Preview subs={this.state.subscriber} deleteHandler={this.deleteHandler}></Preview>
-            : <Adder click={this.subAddHandler} textChangedHandler={this.textChangedHandler} data={this.state.ongoing}></Adder>
-          }
+          <Route path="/" exact render={() => this.state.preview ? <Preview subs={this.state.subscriber} deleteHandler={this.deleteHandler}></Preview> : <Redirect from='/' to='/add'></Redirect>} />
+          <Route
+            path="/add"
+            exact
+            render={
+              () => <Adder
+                click={this.subAddHandler}
+                textChangedHandler={this.textChangedHandler}
+                data={this.state.ongoing}>
+              </Adder>}
+          />
 
         </div>
-
 
       </div>
     );

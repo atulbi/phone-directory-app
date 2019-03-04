@@ -1,6 +1,7 @@
 import React from 'react';
 import './Adder.css';
 import './../App.css';
+import {NavLink} from 'react-router-dom';
 
 const Adder = (props) => {
 
@@ -14,7 +15,7 @@ const Adder = (props) => {
             <h5>Subscriber to be added</h5>
             <p>Name: {props.data.name}</p>
             <p>Phone: {props.data.number}</p>
-            <button onClick={props.click} className='main-button green'>ADD</button>
+            <NavLink to={'/'} exact><button onClick={props.click} className='main-button green'>ADD</button></NavLink>
         </div>
 
     )

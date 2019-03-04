@@ -1,0 +1,17 @@
+.grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.grid > div {
+    padding : 10px 10px
+}
+
+.head {
+    font-weight: bold;
+}
+
+.red  {
+    background-color: lightcoral;
+    color: black;
+}

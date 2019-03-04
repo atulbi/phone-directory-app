@@ -1,0 +1,15 @@
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input:focus {
+    border: 1px solid lightskyblue;
+    outline: none;
+}
+
+.green {
+    background: rgb(57, 192, 113);
+    color: white;
+}

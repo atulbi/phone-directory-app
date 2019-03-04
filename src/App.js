@@ -22,7 +22,6 @@ class App extends Component {
 
   deleteHandler = (index) => {
     this.setState(prevState => {
-      console.log("DLETED");
       let subsList = prevState.subscriber;
       subsList.splice(index, 1);
       return { subscriber: subsList };
@@ -36,7 +35,6 @@ class App extends Component {
   }
 
   textChangedHandler = (event) => {
-    // console.log(event.target.name);
     let text = event.target.value;
     if (event.target.name === 'name') {
       this.setState(prevState => {
@@ -79,7 +77,6 @@ class App extends Component {
     }
 
     return (
-
       <div className="App">
         <header className="App-header">
           {headText}
@@ -99,9 +96,7 @@ class App extends Component {
                 data={this.state.ongoing}>
               </Adder>}
           />
-
         </div>
-
       </div>
     );
   }
